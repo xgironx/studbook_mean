@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>When President</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <base href="/" />
+  </head>
+  <body data-ng-app="whenpresident">
+    <h1><a data-ui-sref="index">When President...</a></h1>
+    <nav>
+      {{#if current_user}}
+      Welcome, {{current_user.name}}! <a href="/logout" target="_top">Log out</a>
+      {{else}}
+      <a href="/login/twitter" target="_top">Log in</a>
+      {{/if}}
+    </nav>
+    <main data-ui-view></main>
+  </body>
+</html>

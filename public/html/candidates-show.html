@@ -1,0 +1,13 @@
+<div data-ng-if="!ShowVM.candidate">
+  <h2>That candidate couldn't be found!</h2>
+</div>
+<div data-ng-if="ShowVM.candidate">
+  <h2>{{ShowVM.candidate.name}} for President in {{ShowVM.candidate.year}}!</h2>
+  <img data-ng-src="{{ShowVM.candidate.photo_url}}" />
+  <div data-ng-if="ShowVM.is_current_user">
+    <a href="/user/destroy" target="_top"><button>Concede</a></button></a>
+    <input type="text" placeholder="Name" data-ng-model="ShowVM.candidate.name" />
+    <input type="number" placeholder="Year" data-ng-model="ShowVM.candidate.year" />
+    <button data-ng-click="ShowVM.update()">Edit Platform</button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div data-ng-if="!ShowVM_fnRouterControllerAs.horse">
+  <h2>That horse couldn't be found!</h2>
+</div>
+<div data-ng-if="ShowVM_fnRouterControllerAs.horse">
+
+      <h2>{{ShowVM_fnRouterControllerAs.horse.name}} for President in {{ShowVM_fnRouterControllerAs.horse.color}}!</h2>
+            <img data-ng-src="{{ShowVM_fnRouterControllerAs.horse.img_url}}" />
+
+      <div data-ng-if="ShowVM_fnRouterControllerAs.is_current_user">
+            <a     href="/user/destroy"    target="_top"><button>Concede</a></button></a>
+            <input type="number"           placeholder="id"        data-ng-model="ShowVM_fnRouterControllerAs.horse.id" />
+            <input type="text"             placeholder="Name"      data-ng-model="ShowVM_fnRouterControllerAs.horse.name" />
+            <input type="text"             placeholder="Color"     data-ng-model="ShowVM_fnRouterControllerAs.horse.color" />
+            <button data-ng-click="ShowVM_fnRouterControllerAs.update()">Edit Platform</button>
+      </div>
+</div>

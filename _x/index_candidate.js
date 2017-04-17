@@ -19,7 +19,7 @@ if(process.env.NODE_ENV !== "production"){
   process.env.t_consumer_secret = env.t_consumer_secret;
 }
 
-var Horse_mongooseModel = mongoose.model("Horse");
+var Candidate = mongoose.model("Candidate");
 
 app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
@@ -105,7 +105,7 @@ app.get("/login/twitter/refresh_user_data", function(req, res){
     }
   };
   request.get(apiRequestParameters, function(err, response){
-    var horse_info  = {
+    var candidate_info  = {
       name:         response.body.name,
       screen_name:  response.body.screen_name,
       photo_url:    response.body.profile_image_url
@@ -113,15 +113,15 @@ app.get("/login/twitter/refresh_user_data", function(req, res){
     var search_params   = {
       screen_name:  response.body.screen_name
     };
-    Horse_mongooseModel.findOneAndUpdate(
-      search_params, horse_info, {new: true}
-    ).then(function(horse){
-      if(horse){
-        req.session.current_user = horse;
+    Candidate.findOneAndUpdate(
+      search_params, candidate_info, {new: true}
+    ).then(function(candidate){
+      if(candidate){
+        req.session.current_user = candidate;
         res.redirect("/");
       }else{
-        Horse_mongooseModel.create(horse_info).then(function(horse){
-          req.session.current_user = horse;
+        Candidate.create(candidate_info).then(function(candidate){
+          req.session.current_user = candidate;
           res.redirect("/");
         });
       }
@@ -129,15 +129,15 @@ app.get("/login/twitter/refresh_user_data", function(req, res){
   });
 })
 
-app.get("/api/horses", function(req, res){
-  Horse_mongooseModel.find({}).then(function(horses){
-    res.json(horses);
+app.get("/api/candidates", function(req, res){
+  Candidate.find({}).then(function(candidates){
+    res.json(candidates);
   });
 });
 
-app.get("/api/horses/:name", function(req, res){
-  Horse_mongooseModel.findOne(req.params).then(function(horse){
-    res.json(horse);
+app.get("/api/candidates/:name", function(req, res){
+  Candidate.findOne(req.params).then(function(candidate){
+    res.json(candidate);
   });
 });
 
@@ -147,7 +147,7 @@ app.get("/user", function(req, res){
 
 app.get("/user/destroy", function(req, res){
   if(req.session.current_user){
-    Horse_mongooseModel.findOneAndRemove(req.session.current_user).then(function(){
+    Candidate.findOneAndRemove(req.session.current_user).then(function(){
       req.session.destroy();
       res.redirect("/");
     });
@@ -156,14 +156,14 @@ app.get("/user/destroy", function(req, res){
   }
 });
 
-app.put("/api/horses/:name", function(req, res){
+app.put("/api/candidates/:name", function(req, res){
   if(req.session.current_user){
-    Horse_mongooseModel.findOne(req.params).then(function(horse){
-      if(horse._id !== req.session.current_user._id){
+    Candidate.findOne(req.params).then(function(candidate){
+      if(candidate._id !== req.session.current_user._id){
         res.json({failure: true});
       }else{
-        Horse_mongooseModel.update(horse, req.body, {new: true}).then(function(horse){
-          res.json(horse);
+        Candidate.update(candidate, req.body, {new: true}).then(function(candidate){
+          res.json(candidate);
         });
       }
     });

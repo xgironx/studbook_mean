@@ -12,6 +12,14 @@
                                     // > show collections;
                                             // system.indexes
                                             // horses
+                                    // Horse.remove({}).then(function(){
+                                    // Horse.collection.insert(seedData, function(err, result)
+                                    // Horse.find().exec(function(err, docs) {
+                                    // Horse.find().count(function(err, docs) {
+                                    // Horse.find({name: 'Zenyatta'});
+                                    // Horse.find().count();
+
+
 var mongoose  = require("./connection");
 var seedData  = require("./seeds");
 var Horse = mongoose.model("Horse");        // var collection = db.collection('foods')

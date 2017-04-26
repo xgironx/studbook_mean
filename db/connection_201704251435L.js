@@ -5,7 +5,7 @@ var mongoose  = require("mongoose");
 console.log('GIRO:in connection.js, right above var HorseSchema');
 
 
-                    var HorseSchema = new mongoose.Schema({id:Number, gender:String, name:String, age:{type:Number, min:0, max:44}, color:String, markings:String, birthplace:String, registry_tattoo:String, link_to_pedigree_url:String, img_url:String, stallion_id:Number, stud_fee:Number, stakes_winner_progeny:Number, barren:{type:Boolean, default:false}, num_foals:{type:Number, min:0, max:11}, in_foal_now:{type:Boolean, default:false}, expected_foaling_date:{type:String}, foaling_date:{type:String}, broodmare_id:Number});
+                    // var HorseSchema = new mongoose.Schema({id:Number, gender:String, name:String, age:{type:Number, min:0, max:44}, color:String, markings:String, birthplace:String, registry_tattoo:String, link_to_pedigree_url:String, img_url:String, stallion_id:Number, stud_fee:Number, stakes_winner_progeny:Number, barren:{type:Boolean, default:false}, num_foals:{type:Number, min:0, max:11}, in_foal_now:{type:Boolean, default:false}, expected_foaling_date:{type:String}, foaling_date:{type:String}, broodmare_id:Number});
 mongoose.model("Horse", HorseSchema);
                                     // mongoose.model("HorseModel", HorseSchema);
                                     // HorseModel = mongoose.model("HorseModel", HorseSchema);
